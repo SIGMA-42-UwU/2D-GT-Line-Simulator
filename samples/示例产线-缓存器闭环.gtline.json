@@ -1,0 +1,211 @@
+{
+  "format": "gtline.flow",
+  "version": 1,
+  "meta": {
+    "id": "flow-ud7n71d7r3",
+    "name": "示例产线 · 缓存器闭环（循环连接的正确做法）",
+    "note": "演示缓存器：用缓存器把“熔炼机 → 压制机 → 熔炼机”的循环连起来。缓存器只能配置输入，输出强制与输入相同，且每条通道总输入速率 = 总输出速率。如果没有缓存器，这两台机器直接成环会报错并提示接入缓存器。",
+    "createdAt": "2026-10-06T15:36:42.739Z",
+    "updatedAt": "2026-10-06T15:36:42.743Z"
+  },
+  "view": {
+    "x": 0,
+    "y": 0,
+    "zoom": 0.72
+  },
+  "items": [
+    {
+      "id": "item-ud7n71eeqv",
+      "name": "铁锭",
+      "state": "solid",
+      "color": "#6fbf5f",
+      "note": ""
+    },
+    {
+      "id": "item-ud7n71fd3l",
+      "name": "铁粉",
+      "state": "solid",
+      "color": "#6fbf5f",
+      "note": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "dia-ud7n71g5b7",
+      "kind": "diamond",
+      "mode": "source",
+      "name": "铁锭补充",
+      "x": -672,
+      "y": 0,
+      "emit": {
+        "itemId": "item-ud7n71eeqv",
+        "count": 1,
+        "ticks": 20
+      },
+      "filter": {
+        "itemId": "",
+        "count": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "mch-ud7n71jtz6",
+      "kind": "machine",
+      "name": "熔炼机",
+      "x": -360,
+      "y": 0,
+      "power": 32,
+      "ticks": 20,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n71hzmz",
+            "itemId": "item-ud7n71eeqv",
+            "count": 2
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n71ivn5",
+            "itemId": "item-ud7n71fd3l",
+            "count": 4
+          }
+        ]
+      },
+      "note": "2 铁锭/次 → 4 铁粉/次"
+    },
+    {
+      "id": "buf-ud7n71l5hh",
+      "kind": "buffer",
+      "name": "缓存器（打破闭环）",
+      "x": 0,
+      "y": 0,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n71k5qr",
+            "itemId": "item-ud7n71fd3l",
+            "count": 4
+          }
+        ]
+      },
+      "note": ""
+    },
+    {
+      "id": "mch-ud7n71oscw",
+      "kind": "machine",
+      "name": "压制机",
+      "x": 360,
+      "y": 0,
+      "power": 32,
+      "ticks": 20,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n71m7e4",
+            "itemId": "item-ud7n71fd3l",
+            "count": 4
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n71nuio",
+            "itemId": "item-ud7n71eeqv",
+            "count": 2
+          }
+        ]
+      },
+      "note": ""
+    },
+    {
+      "id": "dia-ud7n71p8qz",
+      "kind": "diamond",
+      "mode": "sink",
+      "name": "成品出料",
+      "x": 672,
+      "y": 0,
+      "emit": {
+        "itemId": "",
+        "count": 1,
+        "ticks": 20
+      },
+      "filter": {
+        "itemId": "item-ud7n71eeqv",
+        "count": 0
+      },
+      "note": ""
+    }
+  ],
+  "links": [
+    {
+      "id": "lnk-ud7n71q3yn",
+      "from": {
+        "nodeId": "dia-ud7n71g5b7",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n71jtz6",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n71rk28",
+      "from": {
+        "nodeId": "mch-ud7n71jtz6",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "buf-ud7n71l5hh",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n71stvw",
+      "from": {
+        "nodeId": "buf-ud7n71l5hh",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n71oscw",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n71txi0",
+      "from": {
+        "nodeId": "mch-ud7n71oscw",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "dia-ud7n71p8qz",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n71uzeu",
+      "from": {
+        "nodeId": "mch-ud7n71oscw",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n71jtz6",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    }
+  ]
+}

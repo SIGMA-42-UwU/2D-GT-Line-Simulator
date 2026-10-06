@@ -1,0 +1,239 @@
+{
+  "format": "gtline.presets",
+  "version": 1,
+  "updatedAt": "2026-10-06T15:36:42.745Z",
+  "presets": [
+    {
+      "id": "ps-ud7nc1vtwy",
+      "type": "item",
+      "name": "铁矿石",
+      "desc": "",
+      "item": {
+        "name": "铁矿石",
+        "state": "solid",
+        "color": "#d4604a",
+        "note": "矿物"
+      }
+    },
+    {
+      "id": "ps-ud7nc1wqpw",
+      "type": "item",
+      "name": "铁锭",
+      "desc": "",
+      "item": {
+        "name": "铁锭",
+        "state": "solid",
+        "color": "#6fbf5f",
+        "note": "锭"
+      }
+    },
+    {
+      "id": "ps-ud7nc1xjj2",
+      "type": "item",
+      "name": "铁板",
+      "desc": "",
+      "item": {
+        "name": "铁板",
+        "state": "solid",
+        "color": "#6fbf5f",
+        "note": "板材"
+      }
+    },
+    {
+      "id": "ps-ud7nc1ykm0",
+      "type": "item",
+      "name": "电路板",
+      "desc": "",
+      "item": {
+        "name": "电路板",
+        "state": "solid",
+        "color": "#d4604a",
+        "note": "成品"
+      }
+    },
+    {
+      "id": "ps-ud7nc1zo1t",
+      "type": "item",
+      "name": "蒸馏水",
+      "desc": "",
+      "item": {
+        "name": "蒸馏水",
+        "state": "fluid",
+        "color": "#d4604a",
+        "note": "mB"
+      }
+    },
+    {
+      "id": "ps-ud7nc20fx2",
+      "type": "item",
+      "name": "蒸汽",
+      "desc": "",
+      "item": {
+        "name": "蒸汽",
+        "state": "fluid",
+        "color": "#6fbf5f",
+        "note": "mB"
+      }
+    },
+    {
+      "id": "ps-ud7nc21qjy",
+      "type": "machine",
+      "name": "工业高炉",
+      "desc": "",
+      "machine": {
+        "name": "工业高炉",
+        "power": 32,
+        "ticks": 40,
+        "inputs": [
+          {
+            "item": {
+              "name": "铁矿石",
+              "state": "solid",
+              "color": "#d4604a"
+            },
+            "count": 2
+          }
+        ],
+        "outputs": [
+          {
+            "item": {
+              "name": "铁锭",
+              "state": "solid",
+              "color": "#6fbf5f"
+            },
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "ps-ud7nc22e69",
+      "type": "machine",
+      "name": "压板机",
+      "desc": "",
+      "machine": {
+        "name": "压板机",
+        "power": 30,
+        "ticks": 20,
+        "inputs": [
+          {
+            "item": {
+              "name": "铁锭",
+              "state": "solid",
+              "color": "#6fbf5f"
+            },
+            "count": 1
+          }
+        ],
+        "outputs": [
+          {
+            "item": {
+              "name": "铁板",
+              "state": "solid",
+              "color": "#6fbf5f"
+            },
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "ps-ud7nd2372d",
+      "type": "machine",
+      "name": "电路组装机",
+      "desc": "",
+      "machine": {
+        "name": "电路组装机",
+        "power": 64,
+        "ticks": 60,
+        "inputs": [
+          {
+            "item": {
+              "name": "铁板",
+              "state": "solid",
+              "color": "#6fbf5f"
+            },
+            "count": 3
+          }
+        ],
+        "outputs": [
+          {
+            "item": {
+              "name": "电路板",
+              "state": "solid",
+              "color": "#d4604a"
+            },
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "ps-ud7nd244q6",
+      "type": "machine",
+      "name": "蒸汽锅炉",
+      "desc": "",
+      "machine": {
+        "name": "蒸汽锅炉",
+        "power": 8,
+        "ticks": 20,
+        "inputs": [
+          {
+            "item": {
+              "name": "蒸馏水",
+              "state": "fluid",
+              "color": "#d4604a"
+            },
+            "count": 500
+          }
+        ],
+        "outputs": [
+          {
+            "item": {
+              "name": "蒸汽",
+              "state": "fluid",
+              "color": "#6fbf5f"
+            },
+            "count": 500
+          }
+        ]
+      }
+    },
+    {
+      "id": "ps-ud7nd25dg3",
+      "type": "source",
+      "name": "铁矿石供料",
+      "desc": "",
+      "diamond": {
+        "name": "铁矿石供料",
+        "ticks": 40,
+        "item": {
+          "name": "铁矿石",
+          "state": "solid",
+          "color": "#d4604a"
+        },
+        "count": 2,
+        "filterItem": null,
+        "filterCount": 0
+      }
+    },
+    {
+      "id": "ps-ud7nd26616",
+      "type": "sink",
+      "name": "成品出料",
+      "desc": "",
+      "diamond": {
+        "name": "成品出料",
+        "ticks": 20,
+        "item": null,
+        "count": 0,
+        "filterItem": {
+          "name": "电路板",
+          "state": "solid",
+          "color": "#d4604a"
+        },
+        "filterCount": 0
+      }
+    }
+  ]
+}

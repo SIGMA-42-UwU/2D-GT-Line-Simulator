@@ -1,0 +1,38 @@
+name: 自检
+
+# 本项目零依赖、无需构建：CI 只是把仓库里自带的三套自检跑一遍
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} · Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ['20']
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 准备 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 逻辑自检（模型 / 端口几何 / 校验 / 模拟 / 预设 / 缓存器 / 自动排版 / 随机图）
+        run: node tests/logic.test.js
+
+      - name: 集成冒烟自检（自带迷你 DOM，真跑 store + canvas + ui）
+        run: node tests/dom-smoke.test.js
+
+      - name: 静态自检（DOM id 交叉引用 / 脚本加载顺序 / 模块导出面）
+        run: node tests/static-check.js
+
+      - name: 示例文件有效性（示例必须 0 错误 0 警告、排版无重叠、缓存器进出恒等）
+        run: node tools/make-samples.js

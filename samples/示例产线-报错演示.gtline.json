@@ -1,0 +1,213 @@
+{
+  "format": "gtline.flow",
+  "version": 1,
+  "meta": {
+    "id": "flow-ud7n6u4ry",
+    "name": "示例产线 · 报错演示（请对照红色连线）",
+    "note": "故意包含三类问题：① 内容不匹配 ② 供料不足 ③ 物料环路 ④ 未填写配方。可用来验证报错规则。",
+    "createdAt": "2026-10-06T15:36:42.738Z",
+    "updatedAt": "2026-10-06T15:36:42.742Z"
+  },
+  "view": {
+    "x": 0,
+    "y": 0,
+    "zoom": 0.78
+  },
+  "items": [
+    {
+      "id": "item-ud7n6viz3",
+      "name": "铁锭",
+      "state": "solid",
+      "color": "#6fbf5f",
+      "note": ""
+    },
+    {
+      "id": "item-ud7n6wpt9",
+      "name": "铜锭",
+      "state": "solid",
+      "color": "#6fbf5f",
+      "note": ""
+    },
+    {
+      "id": "item-ud7n6xzl9",
+      "name": "铁板",
+      "state": "solid",
+      "color": "#6fbf5f",
+      "note": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "dia-ud7n6y8hl",
+      "kind": "diamond",
+      "mode": "source",
+      "name": "铁锭源",
+      "x": -360,
+      "y": -192,
+      "emit": {
+        "itemId": "item-ud7n6viz3",
+        "count": 1,
+        "ticks": 40
+      },
+      "filter": {
+        "itemId": "",
+        "count": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "dia-ud7n6zfss",
+      "kind": "diamond",
+      "mode": "source",
+      "name": "铜锭源（故意接错）",
+      "x": -360,
+      "y": -24,
+      "emit": {
+        "itemId": "item-ud7n6wpt9",
+        "count": 1,
+        "ticks": 20
+      },
+      "filter": {
+        "itemId": "",
+        "count": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "mch-ud7n612wix",
+      "kind": "machine",
+      "name": "压板机（需要铁锭）",
+      "x": 0,
+      "y": 0,
+      "power": 30,
+      "ticks": 20,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n610ddx",
+            "itemId": "item-ud7n6viz3",
+            "count": 1
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n61149y",
+            "itemId": "item-ud7n6xzl9",
+            "count": 1
+          }
+        ]
+      },
+      "note": ""
+    },
+    {
+      "id": "mch-ud7n615v6x",
+      "kind": "machine",
+      "name": "回流机（构成环路 + 供料不足）",
+      "x": 360,
+      "y": 0,
+      "power": 5,
+      "ticks": 20,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n61377o",
+            "itemId": "item-ud7n6xzl9",
+            "count": 2
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n6145nv",
+            "itemId": "item-ud7n6xzl9",
+            "count": 1
+          }
+        ]
+      },
+      "note": "输入需要 2 铁板/次，上游只能给 1/s"
+    },
+    {
+      "id": "mch-ud7n618rl9",
+      "kind": "machine",
+      "name": "未填写配方的机器",
+      "x": -360,
+      "y": 168,
+      "power": 0,
+      "ticks": 20,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n616cyp",
+            "itemId": "",
+            "count": 1
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n617yy",
+            "itemId": "",
+            "count": 1
+          }
+        ]
+      },
+      "note": ""
+    }
+  ],
+  "links": [
+    {
+      "id": "lnk-ud7n619x7a",
+      "from": {
+        "nodeId": "dia-ud7n6y8hl",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n612wix",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n61a3sq",
+      "from": {
+        "nodeId": "dia-ud7n6zfss",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n612wix",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n61b5fs",
+      "from": {
+        "nodeId": "mch-ud7n612wix",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n615v6x",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n61c86",
+      "from": {
+        "nodeId": "mch-ud7n615v6x",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n612wix",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    }
+  ]
+}

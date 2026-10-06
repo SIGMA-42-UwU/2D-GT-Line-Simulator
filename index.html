@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GT 产线模拟器 · 格雷科技生产线 2D 模拟</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <header class="toolbar">
+    <div class="brand">
+      <span class="brand-mark">GT</span>
+      <span class="brand-text">
+        <b>产线模拟器</b>
+        <i>GregTech Line Simulator · 纯 2D</i>
+      </span>
+    </div>
+
+    <div class="tool-group">
+      <button id="btnNew" class="btn" title="新建空白流程">✚ 新建</button>
+      <button id="btnOpen" class="btn" title="本地存档 / 导入导出 / 备份">📂 流程文件</button>
+      <button id="btnSave" class="btn" title="保存到浏览器本地存储（Ctrl+S）">💾 保存</button>
+      <button id="btnImport" class="btn" title="导入 .gtline.json 流程文件">⬇ 导入</button>
+      <button id="btnExport" class="btn" title="导出 .gtline.json 流程文件">⬆ 导出</button>
+    </div>
+
+    <div class="tool-group">
+      <button id="btnUndo" class="btn btn-icon" title="撤销（Ctrl+Z）">↶</button>
+      <button id="btnRedo" class="btn btn-icon" title="重做（Ctrl+Y）">↷</button>
+    </div>
+
+    <div class="tool-group">
+      <button id="btnPlay" class="btn btn-primary" title="运行 / 暂停物流模拟">▶ 运行模拟</button>
+      <button id="btnReset" class="btn btn-icon" title="重置模拟相位">⟲</button>
+      <select id="simSpeed" class="input input-sm" title="模拟速度">
+        <option value="0.25">0.25×</option>
+        <option value="0.5">0.5×</option>
+        <option value="1" selected>1×</option>
+        <option value="2">2×</option>
+        <option value="4">4×</option>
+      </select>
+    </div>
+
+    <div class="tool-group right">
+      <button id="btnItems" class="btn" title="物品库：名称 + 固体/流体">📦 物品库</button>
+      <button id="btnPresets" class="btn" title="预设库：独立文件，所有流程共用">🔖 预设库</button>
+      <button id="btnLayout" class="btn" title="自动排版：按与输入端的最短连接步数分列排布（Ctrl+L）">📐 自动排版</button>
+      <button id="btnGrid" class="btn btn-icon active" title="显示网格">▦</button>
+      <button id="btnSnap" class="btn btn-icon" title="网格吸附">⊞</button>
+      <button id="btnPanel" class="btn btn-icon" title="显示 / 隐藏属性面板">☰</button>
+      <button id="btnFit" class="btn btn-icon" title="适应视图（F）">⤢</button>
+      <button id="btnZoomIn" class="btn btn-icon" title="放大">＋</button>
+      <button id="btnZoomOut" class="btn btn-icon" title="缩小">－</button>
+      <button id="btnHelp" class="btn btn-icon" title="使用说明">？</button>
+    </div>
+  </header>
+
+  <div class="main">
+    <aside id="palette" class="palette"></aside>
+
+    <main id="workspace" class="workspace">
+      <canvas id="board"></canvas>
+
+      <div class="hud" id="hud">
+        <div class="hud-row">
+          <span class="hud-label">理论最大耗电量</span>
+          <span id="hudPower" class="hud-value">0 EU/t</span>
+        </div>
+        <div class="hud-row">
+          <span class="hud-label">理论最大耗时</span>
+          <span id="hudTime" class="hud-value">0 t</span>
+        </div>
+        <div class="hud-divider"></div>
+        <div id="hudCounts" class="hud-counts"></div>
+        <div id="hudIssues" class="hud-issues is-ok">✓ 校验通过</div>
+        <div id="hudSim" class="hud-sim hidden"></div>
+      </div>
+
+      <aside id="inspector" class="inspector hidden"></aside>
+
+      <div class="legend">
+        <span><i class="lg lg-in"></i>输入口</span>
+        <span><i class="lg lg-out"></i>输出口</span>
+        <span><i class="lg lg-err"></i>内容不匹配</span>
+        <span><i class="lg lg-warn"></i>警告</span>
+        <span><i class="lg lg-flow"></i>物料流向</span>
+      </div>
+
+      <div id="status" class="status"></div>
+    </main>
+  </div>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+
+<script src="js/model.js" charset="utf-8"></script>
+<script src="js/graph.js" charset="utf-8"></script>
+<script src="js/presets.js" charset="utf-8"></script>
+<script src="js/store.js" charset="utf-8"></script>
+<script src="js/canvas.js" charset="utf-8"></script>
+<script src="js/ui.js" charset="utf-8"></script>
+<script src="js/main.js" charset="utf-8"></script>
+</body>
+</html>

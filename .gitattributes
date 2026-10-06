@@ -1,0 +1,35 @@
+# ============================================================================
+#  统一换行符与文件类型标记
+#  仓库内文本一律 LF，Windows 批处理保持 CRLF，避免跨平台来回改动整份文件。
+# ============================================================================
+
+* text=auto eol=lf
+
+# Windows 批处理必须是 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 明确文本类型（便于 diff 与 GitHub 语言统计）
+*.html  text eol=lf
+*.css   text eol=lf
+*.js    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.txt   text eol=lf
+
+# 二进制文件不要做换行符转换
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.7z   binary
+
+# 让 GitHub 正确识别这两种自定义扩展名
+*.gtline.json    linguist-language=JSON
+*.gtpresets.json linguist-language=JSON

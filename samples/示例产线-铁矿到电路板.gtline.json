@@ -1,0 +1,324 @@
+{
+  "format": "gtline.flow",
+  "version": 1,
+  "meta": {
+    "id": "flow-ud7mx14vl",
+    "name": "示例产线 · 铁矿 → 电路板",
+    "note": "导入后可直接运行模拟：这是一条速率完全配平的示例产线（0 错误 0 警告）。",
+    "createdAt": "2026-10-06T15:36:42.729Z",
+    "updatedAt": "2026-10-06T15:36:42.740Z"
+  },
+  "view": {
+    "x": 0,
+    "y": 0,
+    "zoom": 0.78
+  },
+  "items": [
+    {
+      "id": "item-ud7n02qxf",
+      "name": "铁矿石",
+      "state": "solid",
+      "color": "#d4604a",
+      "note": "矿物"
+    },
+    {
+      "id": "item-ud7n13v15",
+      "name": "铁锭",
+      "state": "solid",
+      "color": "#6fbf5f",
+      "note": "锭"
+    },
+    {
+      "id": "item-ud7n14szu",
+      "name": "铁板",
+      "state": "solid",
+      "color": "#6fbf5f",
+      "note": "板材"
+    },
+    {
+      "id": "item-ud7n15v4i",
+      "name": "电路板",
+      "state": "solid",
+      "color": "#d4604a",
+      "note": "成品"
+    },
+    {
+      "id": "item-ud7n16bl1",
+      "name": "蒸馏水",
+      "state": "fluid",
+      "color": "#d4604a",
+      "note": "mB"
+    },
+    {
+      "id": "item-ud7n17yxd",
+      "name": "蒸汽",
+      "state": "fluid",
+      "color": "#6fbf5f",
+      "note": "mB"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "dia-ud7n18zm",
+      "kind": "diamond",
+      "mode": "source",
+      "name": "铁矿石供料",
+      "x": -672,
+      "y": -72,
+      "emit": {
+        "itemId": "item-ud7n02qxf",
+        "count": 2,
+        "ticks": 40
+      },
+      "filter": {
+        "itemId": "",
+        "count": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "mch-ud7n1bb2g",
+      "kind": "machine",
+      "name": "工业高炉",
+      "x": -360,
+      "y": -96,
+      "power": 32,
+      "ticks": 40,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n19mzu",
+            "itemId": "item-ud7n02qxf",
+            "count": 2
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n1a4uo",
+            "itemId": "item-ud7n13v15",
+            "count": 2
+          }
+        ]
+      },
+      "note": "2 铁矿石 / 40t → 2 铁锭"
+    },
+    {
+      "id": "mch-ud7n1etoc",
+      "kind": "machine",
+      "name": "压板机",
+      "x": 0,
+      "y": -72,
+      "power": 30,
+      "ticks": 20,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n1cpiw",
+            "itemId": "item-ud7n13v15",
+            "count": 1
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n1d5ge",
+            "itemId": "item-ud7n14szu",
+            "count": 1
+          }
+        ]
+      },
+      "note": ""
+    },
+    {
+      "id": "mch-ud7n1h5li",
+      "kind": "machine",
+      "name": "电路组装机",
+      "x": 360,
+      "y": 0,
+      "power": 64,
+      "ticks": 60,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n1flgm",
+            "itemId": "item-ud7n14szu",
+            "count": 3
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n1g2v3",
+            "itemId": "item-ud7n15v4i",
+            "count": 1
+          }
+        ]
+      },
+      "note": ""
+    },
+    {
+      "id": "dia-ud7n1iqep",
+      "kind": "diamond",
+      "mode": "sink",
+      "name": "成品出料",
+      "x": 672,
+      "y": 0,
+      "emit": {
+        "itemId": "",
+        "count": 1,
+        "ticks": 20
+      },
+      "filter": {
+        "itemId": "item-ud7n15v4i",
+        "count": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "dia-ud7n1jc7j",
+      "kind": "diamond",
+      "mode": "source",
+      "name": "蒸馏水供应",
+      "x": -672,
+      "y": 96,
+      "emit": {
+        "itemId": "item-ud7n16bl1",
+        "count": 500,
+        "ticks": 20
+      },
+      "filter": {
+        "itemId": "",
+        "count": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "mch-ud7n1mvyw",
+      "kind": "machine",
+      "name": "蒸汽锅炉",
+      "x": -360,
+      "y": 96,
+      "power": 8,
+      "ticks": 20,
+      "recipe": {
+        "inputs": [
+          {
+            "id": "rl-ud7n1k9db",
+            "itemId": "item-ud7n16bl1",
+            "count": 500
+          }
+        ],
+        "outputs": [
+          {
+            "id": "rl-ud7n1lyzz",
+            "itemId": "item-ud7n17yxd",
+            "count": 500
+          }
+        ]
+      },
+      "note": ""
+    },
+    {
+      "id": "dia-ud7n1nds6",
+      "kind": "diamond",
+      "mode": "sink",
+      "name": "蒸汽输出",
+      "x": 0,
+      "y": 96,
+      "emit": {
+        "itemId": "",
+        "count": 1,
+        "ticks": 20
+      },
+      "filter": {
+        "itemId": "",
+        "count": 0
+      },
+      "note": ""
+    }
+  ],
+  "links": [
+    {
+      "id": "lnk-ud7n1olk5",
+      "from": {
+        "nodeId": "dia-ud7n18zm",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n1bb2g",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n1p91r",
+      "from": {
+        "nodeId": "mch-ud7n1bb2g",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n1etoc",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n1quo6",
+      "from": {
+        "nodeId": "mch-ud7n1etoc",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n1h5li",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n1r8ti",
+      "from": {
+        "nodeId": "mch-ud7n1h5li",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "dia-ud7n1iqep",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n1smr4",
+      "from": {
+        "nodeId": "dia-ud7n1jc7j",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "mch-ud7n1mvyw",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    },
+    {
+      "id": "lnk-ud7n1ttr4",
+      "from": {
+        "nodeId": "mch-ud7n1mvyw",
+        "side": "out",
+        "index": 0
+      },
+      "to": {
+        "nodeId": "dia-ud7n1nds6",
+        "side": "in",
+        "index": 0
+      },
+      "note": ""
+    }
+  ]
+}

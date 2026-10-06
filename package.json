@@ -1,0 +1,29 @@
+{
+  "name": "gt-line-simulator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "纯 2D 的格雷科技（GregTech）产线规划与模拟器：本地存储、流程文件导入导出、按步数自动排版、缓存器与循环连接校验",
+  "keywords": [
+    "gregtech",
+    "minecraft",
+    "production-line",
+    "simulator",
+    "canvas",
+    "2d",
+    "vanilla-js",
+    "no-dependencies"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "test": "node tests/logic.test.js && node tests/dom-smoke.test.js && node tests/static-check.js",
+    "test:logic": "node tests/logic.test.js",
+    "test:dom": "node tests/dom-smoke.test.js",
+    "test:static": "node tests/static-check.js",
+    "samples": "node tools/make-samples.js",
+    "serve": "node tools/serve.js",
+    "start": "node tools/serve.js"
+  }
+}
