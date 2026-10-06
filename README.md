@@ -77,8 +77,7 @@ GT-Line-Simulator/
 ├─ package.json                 零依赖；只把自检包装成 npm test（无需 npm install）
 ├─ .gitignore / .gitattributes  忽略垃圾文件 / 统一换行符（文本 LF，bat CRLF）
 ├─ .editorconfig                统一缩进与编码（UTF-8）
-├─ .github/workflows/tests.yml  GitHub Actions：push 后自动跑三套自检
-└─ 上传到GitHub.md              上传到 GitHub / Gitee 的完整步骤与常见问题
+└─ .github/workflows/tests.yml  GitHub Actions：push 后自动跑三套自检
 ```
 
 ---
